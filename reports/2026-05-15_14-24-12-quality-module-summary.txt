@@ -1,0 +1,30 @@
+=== PMS LOAD TEST — DEVELOPER SUMMARY ===
+Module: quality-module
+QA: coverage stats and plan stories.
+VERDICT: RATE_LIMITED
+Under load, VUs typically hit 429 after ~1–91 requests each.
+Across 5738 total HTTP responses, 4579 were 429 (79.8%). The earliest VUs that were already running hit 429 around local request #1 (median ~1). Note: a VU that joins late can show "request #1" — that is not when the system first broke globally. Test duration about 361s. Before 429 dominated, there were about 1159 responses that were not 429.
+200 OK: 1159 (20.2%)
+429:    4579 (79.8%)
+401:    0
+403:    0
+ACTIONS:
+1. [high] Rate limit / gateway — Review API gateway or WAF rate limits, caching, and backlog/board hot paths. Reproduce with DISCOVER_429=1 for one clear "after N requests" number.
+==================================================
+EXECUTIVE SUMMARY — quality-module
+==================================================
+Verdict: RATE_LIMITED
+Test duration: 361s
+Total HTTP requests: 5738
+HTTP status breakdown:
+  200 OK:              1159 (20.2%)
+  401 Unauthorized:    0
+  403 Forbidden:       0
+  404 Not Found:       0
+  429 Too Many Requests: 4579 (79.8%)
+Rate limiting:
+  Under load, VUs typically hit 429 after ~1–91 requests each.
+  Across 5738 total HTTP responses, 4579 were 429 (79.8%). The earliest VUs that were already running hit 429 around local request #1 (median ~1). Note: a VU that joins late can show "request #1" — that is not when the system first broke globally. Test duration about 361s. Before 429 dominated, there were about 1159 responses that were not 429.
+Developer actions:
+  1. [high] Rate limit / gateway: Review API gateway or WAF rate limits, caching, and backlog/board hot paths. Reproduce with DISCOVER_429=1 for one clear "after N requests" number.
+==================================================

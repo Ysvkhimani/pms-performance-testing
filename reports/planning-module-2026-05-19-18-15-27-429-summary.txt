@@ -1,0 +1,32 @@
+=== PMS LOAD TEST — DEVELOPER SUMMARY ===
+Module: planning-module
+Planning / Agile: backlog, board, and epics for project_id=1.
+VERDICT: RATE_LIMITED
+Under load, VUs typically hit 429 after ~1–106 requests each.
+Across 37191 total HTTP responses, 35283 were 429 (94.9%). The earliest VUs that were already running hit 429 around local request #1 (median ~1). Note: a VU that joins late can show "request #1" — that is not when the system first broke globally. Test duration about 540s. Before 429 dominated, there were about 1908 responses that were not 429.
+200 OK: 1272 (3.4%)
+429:    35283 (94.9%)
+401:    0
+403:    636
+ACTIONS:
+1. [medium] Permissions — Check role access for endpoints (e.g. agile/epics). Use a user/project that can open the screen in the UI.
+2. [high] Rate limit / gateway — Review API gateway or WAF rate limits, caching, and backlog/board hot paths. Reproduce with DISCOVER_429=1 for one clear "after N requests" number.
+==================================================
+EXECUTIVE SUMMARY — planning-module
+==================================================
+Verdict: RATE_LIMITED
+Test duration: 540s
+Total HTTP requests: 37191
+HTTP status breakdown:
+  200 OK:              1272 (3.4%)
+  401 Unauthorized:    0
+  403 Forbidden:       636
+  404 Not Found:       0
+  429 Too Many Requests: 35283 (94.9%)
+Rate limiting:
+  Under load, VUs typically hit 429 after ~1–106 requests each.
+  Across 37191 total HTTP responses, 35283 were 429 (94.9%). The earliest VUs that were already running hit 429 around local request #1 (median ~1). Note: a VU that joins late can show "request #1" — that is not when the system first broke globally. Test duration about 540s. Before 429 dominated, there were about 1908 responses that were not 429.
+Developer actions:
+  1. [medium] Permissions: Check role access for endpoints (e.g. agile/epics). Use a user/project that can open the screen in the UI.
+  2. [high] Rate limit / gateway: Review API gateway or WAF rate limits, caching, and backlog/board hot paths. Reproduce with DISCOVER_429=1 for one clear "after N requests" number.
+==================================================

@@ -1,0 +1,6 @@
+{
+  "name": "pms-performance-testing",
+  "private": true,
+  "type": "module",
+  "description": "k6 load tests and Node seed scripts for PMS"
+}

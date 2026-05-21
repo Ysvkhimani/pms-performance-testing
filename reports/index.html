@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PMS Load Test Reports</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; margin: 0; background: #0f172a; color: #e2e8f0; }
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
+    h1 { margin: 0 0 0.35rem; font-size: 1.75rem; }
+    .sub { color: #94a3b8; margin-bottom: 1.5rem; }
+    table { width: 100%; border-collapse: collapse; background: #1e293b; border-radius: 12px; overflow: hidden; }
+    th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid #334155; font-size: 0.875rem; }
+    th { background: #334155; }
+    tr:hover td { background: #273549; }
+    a { color: #38bdf8; font-weight: 500; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .num { font-variant-numeric: tabular-nums; }
+    .ok { color: #4ade80; }
+    .warn { color: #fbbf24; }
+    .small { font-size: 0.8rem; max-width: 280px; }
+    .tag { font-size: 0.7rem; background: #22c55e; color: #052e16; padding: 0.15rem 0.45rem; border-radius: 4px; font-weight: 700; }
+    .badge { display: inline-block; padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
+    .badge-rate { background: #78350f; color: #fde68a; }
+    .badge-auth { background: #7f1d1d; color: #fecaca; }
+    .badge-mixed { background: #1e3a5f; color: #bae6fd; }
+    .badge-ok { background: #14532d; color: #bbf7d0; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>PMS performance test reports</h1>
+    <p class="sub">Sorted newest first. After each k6 run: <code>node tools/rebuild-reports-index.mjs</code></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Report</th><th>Module</th><th>Generated</th><th>Verdict</th>
+          <th>Total reqs</th><th>200 OK</th><th>429</th><th>Rate limit notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+      <td><span class="tag tag-new">Latest</span> <a href="./planning-module-2026-05-15-12-43-24.html">planning-module-2026-05-15-12-43-24.html</a></td>
+      <td>planning-module</td>
+      <td>5/15/2026, 12:43:24 PM</td>
+      <td><span class="badge badge-auth">Auth / 401</span></td>
+      <td class="num">12</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0.0%)</td>
+      <td class="small">No HTTP 429 (rate limiting) observed in this run.</td>
+    </tr>
+<tr>
+      <td><a href="./planning-module-2026-05-15-12-29-09.html">planning-module-2026-05-15-12-29-09.html</a></td>
+      <td>planning-module</td>
+      <td>5/15/2026, 12:29:10 PM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+<tr>
+      <td><a href="./planning-module-2026-05-15-12-19-41.html">planning-module-2026-05-15-12-19-41.html</a></td>
+      <td>planning-module</td>
+      <td>5/15/2026, 12:19:41 PM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+<tr>
+      <td><a href="./planning-module-2026-05-15-12-17-43.html">planning-module-2026-05-15-12-17-43.html</a></td>
+      <td>planning-module</td>
+      <td>5/15/2026, 12:17:44 PM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+<tr>
+      <td><a href="./planning-module-2026-05-15-12-17-05.html">planning-module-2026-05-15-12-17-05.html</a></td>
+      <td>planning-module</td>
+      <td>5/15/2026, 12:17:05 PM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+<tr>
+      <td><a href="./planning-module-2026-05-15-12-15-54.html">planning-module-2026-05-15-12-15-54.html</a></td>
+      <td>planning-module</td>
+      <td>5/15/2026, 12:15:54 PM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+<tr>
+      <td><a href="./planning-module-2026-05-15-12-14-49.html">planning-module-2026-05-15-12-14-49.html</a></td>
+      <td>planning-module</td>
+      <td>5/15/2026, 12:14:49 PM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+<tr>
+      <td><a href="./planning-module-2026-05-15-12-05-23.html">planning-module-2026-05-15-12-05-23.html</a></td>
+      <td>planning-module</td>
+      <td>5/15/2026, 12:05:23 PM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+<tr>
+      <td><a href="./planning-module-2026-05-15-12-02-39.html">planning-module-2026-05-15-12-02-39.html</a></td>
+      <td>planning-module</td>
+      <td>5/15/2026, 12:02:39 PM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+<tr>
+      <td><a href="./planning-module-2026-05-15-11-59-32.html">planning-module-2026-05-15-11-59-32.html</a></td>
+      <td>planning-module</td>
+      <td>5/15/2026, 11:59:32 AM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+<tr>
+      <td><a href="./planning-module-2026-05-15-11-49-28.html">planning-module-2026-05-15-11-49-28.html</a></td>
+      <td>planning-module</td>
+      <td>5/15/2026, 11:49:28 AM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+<tr>
+      <td><a href="./planning-module-2026-05-15-11-48-56.html">planning-module-2026-05-15-11-48-56.html</a></td>
+      <td>planning-module</td>
+      <td>5/15/2026, 11:48:56 AM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+<tr>
+      <td><a href="./planning-module-2026-05-14-18-37-51.html">planning-module-2026-05-14-18-37-51.html</a></td>
+      <td>planning-module</td>
+      <td>5/14/2026, 6:37:51 PM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+<tr>
+      <td><a href="./planning-module-2026-05-14-18-20-28.html">planning-module-2026-05-14-18-20-28.html</a></td>
+      <td>planning-module</td>
+      <td>5/14/2026, 6:20:28 PM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+<tr>
+      <td><a href="./planning-module-2026-05-14-18-08-50.html">planning-module-2026-05-14-18-08-50.html</a></td>
+      <td>planning-module</td>
+      <td>5/14/2026, 6:08:50 PM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+<tr>
+      <td><a href="./planning-module-2026-05-14-17-58-53.html">planning-module-2026-05-14-17-58-53.html</a></td>
+      <td>planning-module</td>
+      <td>5/14/2026, 5:58:53 PM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+<tr>
+      <td><a href="./planning-module-2026-05-14-17-56-48.html">planning-module-2026-05-14-17-56-48.html</a></td>
+      <td>planning-module</td>
+      <td>5/14/2026, 5:56:48 PM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+<tr>
+      <td><a href="./quality-module-2026-05-14-17-40-25.html">quality-module-2026-05-14-17-40-25.html</a></td>
+      <td>quality-module</td>
+      <td>5/14/2026, 5:40:25 PM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+<tr>
+      <td><a href="./planning-module-2026-05-14-17-18.html">planning-module-2026-05-14-17-18.html</a></td>
+      <td>planning-module</td>
+      <td>5/14/2026, 5:18:57 PM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+<tr>
+      <td><a href="./planning-module-2026-05-14T11-45-44-344Z.html">planning-module-2026-05-14T11-45-44-344Z.html</a></td>
+      <td>planning-module</td>
+      <td>5/14/2026, 5:15:44 PM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+<tr>
+      <td><a href="./planning-module-2026-05-14T11-35-13-087Z.html">planning-module-2026-05-14T11-35-13-087Z.html</a></td>
+      <td>planning-module</td>
+      <td>5/14/2026, 5:05:13 PM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+<tr>
+      <td><a href="./quality-module-2026-05-14-15-58-18.html">quality-module-2026-05-14-15-58-18.html</a></td>
+      <td>quality-module</td>
+      <td>5/14/2026, 3:58:18 PM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+<tr>
+      <td><a href="./planning-module-report.html">planning-module-report.html</a></td>
+      <td>planning-module-report.html</td>
+      <td>5/14/2026, 3:53:24 PM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+<tr>
+      <td><a href="./project-module-report.html">project-module-report.html</a></td>
+      <td>project-module-report.html</td>
+      <td>5/14/2026, 3:24:34 PM</td>
+      <td><span class="badge badge-mixed">Mixed issues</span></td>
+      <td class="num">0</td>
+      <td class="num ok">0</td>
+      <td class="num warn">0 (0%)</td>
+      <td class="small">Open report for details</td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

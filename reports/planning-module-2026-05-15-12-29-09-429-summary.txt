@@ -1,0 +1,56 @@
+
+--- WHERE THE SYSTEM BREAKS (PLAIN TEXT) ---
+Script: planning-module
+
+Planning / agile APIs: backlog, board, and epics for project_id=1. Failures here are usually wrong routes, token expiry, or missing project.
+
+Run mode: multi-VU ramp — use DISCOVER_429=1 for a single cumulative "after N requests" 429 number.
+
+Endpoints:
+  - http://172.16.16.62/promanage1/api/agile/backlog?project_id=1
+  - http://172.16.16.62/promanage1/api/agile/board?project_id=1
+  - http://172.16.16.62/promanage1/api/agile/epics?project_id=1
+
+## HTTP status counts (this run)
+Status Count Meaning 200 OK 933 Success 401 Unauthorized 400 Invalid or expired token — update config/config.js 403 Forbidden 465 No permission for this resource 404 Not Found 0 Wrong API path 429 Too Many Requests 33395 Rate limited
+
+## When rate limiting started
+First 429 appeared after request #1 on VU 1 (that virtual user’s local request #). Total 429 responses in this run: 33395 .
+
+## Overall HTTP health
+High failure rate: Most requests are treated as failed (often non-2xx or above threshold). Fix authentication, URLs, and permissions before interpreting this as pure capacity. Class Count What it usually means 2xx (all) 933 Success band 3xx 0 Redirects 4xx (all) 34260 Client errors 5xx 0 Server errors
+
+## Latency (all HTTP requests)
+avg 268 ms , p95 999 ms .
+
+## Functional checks
+Pass rate about 50.2% . Some checks failed — spot-check which assertion broke (status vs duration).
+
+--- RATE LIMIT (429) BLOCK ---
+==================================================
+HTTP STATUS SUMMARY — planning-module
+==================================================
+Total HTTP requests: 35193
+HTTP 200 OK:           933
+HTTP 401 Unauthorized: 400
+HTTP 403 Forbidden:    465
+HTTP 404 Not Found:    0
+HTTP 429 Too Many Requests: 33395
+
+First 429 on this run: after request #1 on VU 1 (that VU's local count; other VUs run in parallel)
+For one global "single client" number: DISCOVER_429=1 k6 run scripts/...
+==================================================
+
+==================================================
+HTTP STATUS SUMMARY — planning-module
+==================================================
+Total HTTP requests: 35193
+HTTP 200 OK:           933
+HTTP 401 Unauthorized: 400
+HTTP 403 Forbidden:    465
+HTTP 404 Not Found:    0
+HTTP 429 Too Many Requests: 33395
+
+First 429 on this run: after request #1 on VU 1 (that VU's local count; other VUs run in parallel)
+For one global "single client" number: DISCOVER_429=1 k6 run scripts/...
+==================================================

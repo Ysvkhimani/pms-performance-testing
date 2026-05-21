@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head> 
+    <meta charset="UTF-8" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" crossorigin="anonymous">
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/benc-uk/k6-reporter/main/assets/icon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Report: 2026-05-15 12:17</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 2rem;
+        color: #2d3748;
+      }
+      
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+      }
+      
+      header {
+        background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+        padding: 1.5rem 2rem;
+        color: white;
+      }
+      
+      header h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      
+      header h1 svg {
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+      }
+      
+      .content {
+        padding: 1.5rem;
+      }
+      
+      footer { 
+        text-align: center;
+        padding: 1.5rem;
+        color: #718096;
+        font-size: 0.875rem;
+        border-top: 1px solid #e2e8f0;
+        background: #f7fafc;
+      }
+      
+      footer a {
+        text-decoration: none;
+        color: #7c3aed;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      
+      footer a:hover {
+        color: #5b21b6;
+      }
+      
+      /* Status classes */
+      .failed {
+        background: linear-gradient(135deg, #fc8181 0%, #f56565 100%) !important;
+        color: white !important;
+      }     
+      
+      .good {
+        background: linear-gradient(135deg, #68d391 0%, #48bb78 100%) !important;
+        color: white !important;
+      }   
+      
+      td.failed {
+        font-weight: 600;
+        color: #e53e3e;
+      }
+      
+      td.good {
+        font-weight: 600;
+        color: #38a169;
+      }
+      
+      h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 2rem 0 1rem 0;
+        padding-bottom: 0.75rem;
+        border-bottom: 2px solid #e2e8f0;
+        color: #2d3748;
+      }
+      
+      h4 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin: 1.5rem 0 1rem 0;
+        color: #4a5568;
+      }
+      
+      /* Metric Cards */
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin: 0;
+      }
+      
+      .metric-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+        border: 1px solid #e2e8f0;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      
+      .metric-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+      }
+      
+      .metric-card.primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+      
+      .metric-card.success {
+        background: linear-gradient(135deg, #68d391 0%, #48bb78 100%);
+        color: white;
+      }
+      
+      .metric-card.danger {
+        background: linear-gradient(135deg, #fc8181 0%, #f56565 100%);
+        color: white;
+      }
+      
+      .metric-card.warning {
+        background: linear-gradient(135deg, #f6ad55 0%, #ed8936 100%);
+        color: white;
+      }
+      
+      .metric-card .icon {
+        position: absolute;
+        top: 50%;
+        right: 1rem;
+        transform: translateY(-50%);
+        font-size: 4rem;
+        opacity: 0.15;
+      }
+      
+      .metric-card h4 {
+        margin: 0 0 0.5rem 0;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        opacity: 0.9;
+        position: relative;
+        z-index: 2;
+      }
+      
+      .metric-card.primary h4,
+      .metric-card.success h4,
+      .metric-card.danger h4,
+      .metric-card.warning h4 {
+        color: white;
+      }
+      
+      .metric-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        position: relative;
+        z-index: 2;
+      }
+      
+      .metric-subtext {
+        font-size: 0.875rem;
+        opacity: 0.8;
+        margin-top: 0.25rem;
+      }
+      
+      /* Tabs */
+      .tabs {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+      }
+      
+      .tabs label {
+        order: 1;
+        display: block;
+        padding: 1rem 2rem;
+        cursor: pointer;
+        color: #718096;
+        background: #f7fafc;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        margin-right: 0.25rem;
+        border: 2px solid transparent;
+        border-bottom: none;
+        font-size: 0.9rem;
+      }
+      
+      .tabs label:hover {
+        background: #edf2f7;
+        color: #4a5568;
+      }
+      
+      .tabs label i {
+        margin-right: 0.5rem;
+      }
+      
+      .tabs .tab {
+        order: 99;
+        flex-grow: 1;
+        width: 100%;
+        display: none;
+        padding: 2rem;
+        background: #ffffff;
+        border-radius: 0 12px 12px 12px;
+        border: 2px solid #e2e8f0;
+        min-height: 400px;
+      }
+      
+      .tabs input[type="radio"] {
+        display: none;
+      }
+      
+      .tabs input[type="radio"]:checked + label {
+        background: #ffffff;
+        color: #7c3aed;
+        border-color: #e2e8f0;
+        border-bottom-color: #ffffff;
+        position: relative;
+        bottom: -2px;
+      }
+      
+      .tabs input[type="radio"]:checked + label + .tab {
+        display: block;
+      }
+      
+      /* Tables */
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 1rem 0;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+      
+      thead {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+      
+      thead th {
+        padding: 1rem;
+        text-align: left;
+        font-weight: 600;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      
+      tbody tr {
+        background: white;
+        transition: background 0.2s;
+      }
+      
+      tbody tr:nth-child(even) {
+        background: #f7fafc;
+      }
+      
+      tbody tr:hover {
+        background: #edf2f7;
+      }
+      
+      tbody td {
+        padding: 1rem;
+        border-bottom: 1px solid #e2e8f0;
+        font-size: 0.9rem;
+      }
+      
+      tbody tr:last-child td {
+        border-bottom: none;
+      }
+      
+      tbody td:first-child {
+        font-weight: 500;
+      }
+      
+      /* Detail boxes for Other Stats */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin: 1rem 0;
+      }
+      
+      .stat-box {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+        border: 1px solid #e2e8f0;
+        position: relative;
+        overflow: hidden;
+        color: white;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      
+      .stat-box:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+      }
+      
+      .stat-box h4 {
+        margin: 0 0 1rem 0;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        opacity: 0.9;
+        color: white;
+        position: relative;
+        z-index: 2;
+      }
+      
+      .stat-box .icon {
+        position: absolute;
+        top: 50%;
+        right: 1rem;
+        transform: translateY(-50%);
+        font-size: 4rem;
+        opacity: 0.15;
+      }
+      
+      .stat-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+        position: relative;
+        z-index: 2;
+      }
+      
+      .stat-row:last-child {
+        border-bottom: none;
+      }
+      
+      .stat-label {
+        color: white;
+        font-weight: 400;
+        font-size: 0.875rem;
+        opacity: 0.9;
+      }
+      
+      .stat-value {
+        color: white;
+        font-weight: 700;
+        font-size: 1.5rem;
+      }
+      
+      /* Groups and Checks */
+      .group-header {
+        cursor: pointer;
+        user-select: none;
+        padding: 0.75rem 1rem;
+        background: #f7fafc;
+        border-radius: 8px;
+        margin: 1rem 0;
+        transition: background 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .group-header:hover {
+        background: #edf2f7;
+      }
+      
+      .group-header::before {
+        content: '▼';
+        font-size: 0.75rem;
+        transition: transform 0.2s;
+      }
+      
+      .sub-groups {
+        padding: 0 0 0 2rem;
+        margin-top: 1rem;
+      }
+      
+      .note {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        background: #edf2f7;
+        border-left: 4px solid #667eea;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        color: #4a5568;
+      }
+      
+      @media (max-width: 768px) {
+        body {
+          padding: 0.5rem;
+        }
+        
+        header {
+          padding: 1.5rem;
+        }
+        
+        header h1 {
+          font-size: 1.5rem;
+        }
+        
+        .content {
+          padding: 1rem;
+        }
+        
+        .metrics-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .tabs label {
+          padding: 0.75rem 1rem;
+          font-size: 0.8rem;
+        }
+        
+        .tabs .tab {
+          padding: 1rem;
+        }
+        
+        .metric-value {
+          font-size: 2rem;
+        }
+      }
+    </style>
+    <script> 
+      function tabClickHandler(e) {
+        let elemSubGroup = e.target.nextElementSibling;
+        if (!elemSubGroup) return;
+        
+        let display = elemSubGroup.style.display;
+        elemSubGroup.style.display = !display || display === "block" ? "none" : "block";
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <h1>
+          <svg width="50" height="45" viewBox="0 0 50 45" fill="none"><path d="M31.968 34.681a2.007 2.007 0 002.011-2.003c0-1.106-.9-2.003-2.011-2.003a2.007 2.007 0 00-2.012 2.003c0 1.106.9 2.003 2.012 2.003z" fill="white"></path><path d="M39.575 0L27.154 16.883 16.729 9.31 0 45h50L39.575 0zM23.663 37.17l-2.97-4.072v4.072h-2.751V22.038l2.75 1.989v7.66l3.659-5.014 2.086 1.51-3.071 4.21 3.486 4.776h-3.189v.001zm8.305.17c-2.586 0-4.681-2.088-4.681-4.662 0-1.025.332-1.972.896-2.743l4.695-6.435 2.086 1.51-2.239 3.07a4.667 4.667 0 013.924 4.6c0 2.572-2.095 4.66-4.681 4.66z" fill="white"></path></svg>
+          Test Report: 2026-05-15 12:17
+        </h1>
+      </header>
+
+      <div class="content">
+
+<style>
+  .pms-breaking-wrap {
+    margin: 0 0 1.75rem 0;
+    padding: 1.25rem 1.5rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    background: linear-gradient(180deg, #fffaf0 0%, #fff 40%);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  }
+  .pms-breaking-wrap h2 {
+    font-size: 1.25rem;
+    margin: 0 0 0.35rem 0;
+    color: #9b2c2c;
+    font-weight: 700;
+  }
+  .pms-breaking-wrap .pms-breaking-sub {
+    color: #4a5568;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  .pms-breaking-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+  .pms-breaking-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
+    border: 1px solid #edf2f7;
+    border-left: 4px solid #718096;
+  }
+  .pms-breaking-card--rate { border-left-color: #d69e2e; }
+  .pms-breaking-card--http { border-left-color: #3182ce; }
+  .pms-breaking-card--perf { border-left-color: #805ad5; }
+  .pms-breaking-card--checks { border-left-color: #c05621; }
+  .pms-breaking-card--info { border-left-color: #718096; }
+  .pms-breaking-card h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.95rem;
+    color: #2d3748;
+    font-weight: 600;
+  }
+  .pms-breaking-card-body {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: #2d3748;
+  }
+  .pms-breaking-card-body code {
+    font-size: 0.8rem;
+    background: #f7fafc;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  .pms-breaking-table {
+    width: 100%;
+    margin-top: 0.5rem;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+  }
+  .pms-breaking-table th,
+  .pms-breaking-table td {
+    border: 1px solid #e2e8f0;
+    padding: 0.45rem 0.5rem;
+    text-align: left;
+  }
+  .pms-breaking-table thead {
+    background: #edf2f7;
+  }
+  .pms-breaking-callout {
+    margin: 0.5rem 0 0.75rem 0;
+    padding: 0.6rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+  }
+  .pms-breaking-callout--bad { background: #fff5f5; border: 1px solid #feb2b2; color: #742a2a; }
+  .pms-breaking-callout--warn { background: #fffaf0; border: 1px solid #fbd38d; color: #744210; }
+  .pms-breaking-callout--ok { background: #f0fff4; border: 1px solid #9ae6b4; color: #22543d; }
+  .pms-breaking-warn { color: #c05621; font-weight: 600; }
+  .pms-breaking-meta ul { margin: 0.35rem 0 0 1.1rem; }
+  .pms-breaking-details { margin-top: 1rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.5rem 0.75rem; background: #f7fafc; }
+  .pms-breaking-details summary { cursor: pointer; font-weight: 600; color: #2d3748; font-size: 0.9rem; }
+  .pms-breaking-details pre {
+    margin: 0.75rem 0 0.25rem 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-size: 0.78rem;
+    line-height: 1.45;
+    color: #2d3748;
+  }
+</style>
+<section class="pms-breaking-wrap" aria-label="Load test breaking insights">
+  <h2>Where the system breaks (read this first)</h2>
+  <p class="pms-breaking-sub">
+    Script: <strong>planning-module</strong> — summary for developers and reviewers.
+    Total HTTP requests (k6): <strong>6</strong>.
+  </p>
+  <p>Planning / agile APIs: backlog, board, and epics for project_id=1. Failures here are usually wrong routes, token expiry, or missing project.</p>
+  <p><strong>Run mode:</strong> multi-VU ramp — good for realistic concurrency; use <code>DISCOVER_429=1</code> for a single cumulative “after N requests” 429 number.</p>
+  <p><strong>Endpoints exercised in this script:</strong></p><ul><li><code>http://172.16.16.62/promanage1/api/agile/backlog?project_id=1</code></li><li><code>http://172.16.16.62/promanage1/api/agile/board?project_id=1</code></li><li><code>http://172.16.16.62/promanage1/api/agile/epics?project_id=1</code></li></ul>
+  <div class="pms-breaking-grid">
+    
+    <article class="pms-breaking-card pms-breaking-card--http">
+      <h4>HTTP status counts (this run)</h4>
+      <div class="pms-breaking-card-body">
+    <table class="pms-breaking-table">
+      <thead><tr><th>Status</th><th>Count</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><strong>200 OK</strong></td><td>0</td><td>Success</td></tr>
+        <tr><td>401 Unauthorized</td><td>6</td><td>Invalid or expired token — update <code>config/config.js</code></td></tr>
+        <tr><td>403 Forbidden</td><td>0</td><td>No permission for this resource</td></tr>
+        <tr><td>404 Not Found</td><td>0</td><td>Wrong API path</td></tr>
+        <tr><td><strong>429 Too Many Requests</strong></td><td>0</td><td>Rate limited</td></tr>
+      </tbody>
+    </table></div>
+    </article>
+    <article class="pms-breaking-card pms-breaking-card--info">
+      <h4>Rate limiting (HTTP 429)</h4>
+      <div class="pms-breaking-card-body">No <strong>429</strong> in this run. Many <strong>401</strong> (6) — fix auth before expecting 429 under load.</div>
+    </article>
+    <article class="pms-breaking-card pms-breaking-card--checks">
+      <h4>Overall HTTP health</h4>
+      <div class="pms-breaking-card-body"><p class="pms-breaking-callout pms-breaking-callout--bad"><strong>High failure rate:</strong> Most requests are treated as failed (often non-2xx or above threshold). Fix authentication, URLs, and permissions before interpreting this as pure capacity.</p><table class="pms-breaking-table"><thead><tr><th>Class</th><th>Count</th><th>What it usually means</th></tr></thead><tbody><tr><td>2xx (all)</td><td>0</td><td>Success band</td></tr><tr><td>3xx</td><td>0</td><td>Redirects</td></tr><tr><td>4xx (all)</td><td>6</td><td>Client errors</td></tr><tr><td>5xx</td><td>0</td><td>Server errors</td></tr></tbody></table></div>
+    </article>
+    <article class="pms-breaking-card pms-breaking-card--perf">
+      <h4>Latency (all HTTP requests)</h4>
+      <div class="pms-breaking-card-body">avg <strong>22 ms</strong>, p95 <strong>31 ms</strong>.</div>
+    </article>
+    <article class="pms-breaking-card pms-breaking-card--checks">
+      <h4>Functional checks</h4>
+      <div class="pms-breaking-card-body"><p class="pms-breaking-callout pms-breaking-callout--warn">Pass rate about <strong>50.0%</strong>. Some checks failed — spot-check which assertion broke (status vs duration).</p></div>
+    </article>
+  </div>
+  <details class="pms-breaking-details">
+    <summary>Plain-text rate limit + tips (same as .txt file)</summary>
+    <pre>==================================================
+HTTP STATUS SUMMARY — planning-module
+==================================================
+Total HTTP requests: 6
+HTTP 200 OK:           0
+HTTP 401 Unauthorized: 6
+HTTP 403 Forbidden:    0
+HTTP 404 Not Found:    0
+HTTP 429 Too Many Requests: 0
+
+First 429 request #: none (no 429 in this run)
+Note: Many 401 responses — refresh Bearer token in config/config.js before load testing.
+==================================================</pre>
+  </details>
+  <p class="pms-breaking-meta" style="margin-top:1rem;font-size:0.8rem;color:#718096;">
+    A longer plain-text report (including this section) is saved next to this file as <code>*-429-summary.txt</code>.
+    Terminal: one line per iteration like <code>PMS | VU 2 | iter 5 | 200=3</code> or <code>401=3</code> / <code>429=1</code>.
+  </p>
+</section>
+
+        <!-- Main info boxes -->
+        <div class="metrics-grid">
+          <div class="metric-card primary">
+            <i class="fas fa-globe icon"></i>
+            <h4>Total Requests</h4>
+            <div class="metric-value">
+              6
+              
+            </div>
+          </div>
+          
+          
+            <div class="metric-card danger">
+              <i class="fas fa-times-circle icon"></i>
+              <h4>Failed Requests</h4>
+              <div class="metric-value">6</div>
+            </div> 
+            
+          
+          <div class="metric-card danger">
+            <i class="fas fa-exclamation-triangle icon"></i>
+            <h4>Breached Thresholds</h4>
+            <div class="metric-value">1</div>
+          </div>
+          
+          <div class="metric-card danger">
+            <i class="fas fa-eye icon"></i>
+            <h4>Failed Checks</h4>
+            <div class="metric-value">6</div>
+          </div>
+        </div>
+
+        <!-- Tabs Section -->
+        <div class="tabs">
+          <input type="radio" name="tabs" id="tabone" checked="checked">
+          <label for="tabone"><i class="fas fa-microscope"></i> Detailed Metrics</label>
+          <div class="tab">
+
+            
+              <h4><i class="fas fa-chart-line"></i> Trends & Times</h4>
+              <table class="pure-table pure-table-striped">
+                <thead>
+                  <tr>
+                    <th></th>
+                    
+                      <th>Avg</th>
+                    
+                      <th>Min</th>
+                    
+                      <th>Med</th>
+                    
+                      <th>Max</th>
+                    
+                      <th>P(90)</th>
+                    
+                      <th>P(95)</th>
+                     
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td><b>http_req_blocked</b></td>
+                    
+                      <td class="">0.44</td>
+                    
+                      <td class="">0.00</td>
+                    
+                      <td class="">0.44</td>
+                    
+                      <td class="">0.91</td>
+                    
+                      <td class="">0.86</td>
+                    
+                      <td class="">0.89</td>
+                     
+                  </tr>
+                  
+                  <tr>
+                    <td><b>http_req_connecting</b></td>
+                    
+                      <td class="">0.38</td>
+                    
+                      <td class="">0.00</td>
+                    
+                      <td class="">0.35</td>
+                    
+                      <td class="">0.86</td>
+                    
+                      <td class="">0.78</td>
+                    
+                      <td class="">0.82</td>
+                     
+                  </tr>
+                  
+                  <tr>
+                    <td><b>http_req_duration</b></td>
+                    
+                      <td class="">21.53</td>
+                    
+                      <td class="">7.30</td>
+                    
+                      <td class="">22.15</td>
+                    
+                      <td class="">32.27</td>
+                    
+                      <td class="">29.74</td>
+                    
+                      <td class="">31.01</td>
+                     
+                  </tr>
+                  
+                  <tr>
+                    <td><b>http_req_receiving</b></td>
+                    
+                      <td class="">0.14</td>
+                    
+                      <td class="">0.11</td>
+                    
+                      <td class="">0.14</td>
+                    
+                      <td class="">0.17</td>
+                    
+                      <td class="">0.16</td>
+                    
+                      <td class="">0.17</td>
+                     
+                  </tr>
+                  
+                  <tr>
+                    <td><b>http_req_sending</b></td>
+                    
+                      <td class="">0.04</td>
+                    
+                      <td class="">0.01</td>
+                    
+                      <td class="">0.03</td>
+                    
+                      <td class="">0.11</td>
+                    
+                      <td class="">0.07</td>
+                    
+                      <td class="">0.09</td>
+                     
+                  </tr>
+                  
+                  <tr>
+                    <td><b>http_req_tls_handshaking</b></td>
+                    
+                      <td class="">0.00</td>
+                    
+                      <td class="">0.00</td>
+                    
+                      <td class="">0.00</td>
+                    
+                      <td class="">0.00</td>
+                    
+                      <td class="">0.00</td>
+                    
+                      <td class="">0.00</td>
+                     
+                  </tr>
+                  
+                  <tr>
+                    <td><b>http_req_waiting</b></td>
+                    
+                      <td class="">21.35</td>
+                    
+                      <td class="">7.02</td>
+                    
+                      <td class="">22.00</td>
+                    
+                      <td class="">32.11</td>
+                    
+                      <td class="">29.58</td>
+                    
+                      <td class="">30.84</td>
+                     
+                  </tr>
+                  
+                  <tr>
+                    <td><b>iteration_duration</b></td>
+                    
+                      <td class="">2026.19</td>
+                    
+                      <td class="">2026.19</td>
+                    
+                      <td class="">2026.19</td>
+                    
+                      <td class="">2026.19</td>
+                    
+                      <td class="">2026.19</td>
+                    
+                      <td class="">2026.19</td>
+                     
+                  </tr>
+                  
+                </tbody>
+              </table>
+            
+
+            
+              <h4><i class="fas fa-percent"></i> Rates</h4>
+              <table class="pure-table pure-table-striped">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Rate %</th> 
+                    <th>Pass Count</th>
+                    <th>Fail Count</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td><b>http_req_failed</b></td>
+                    
+                      <td
+                        class="failed"
+                        title="Failure rate (for *_failed metrics; aligns with Fail Count)"
+                      >100.00%</td>
+                      <td class="">0.00</td>
+                      <td class="">6.00</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+            
+
+            
+              <h4><i class="fas fa-calculator"></i> Counters</h4>
+              <table class="pure-table pure-table-striped">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Count</th> 
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td><b>pms_http_401</b></td>
+                    
+                    
+                      <td class="">6.00</td>
+                      
+                  </tr>
+                  
+                  <tr>
+                    <td><b>pms_http_4xx</b></td>
+                    
+                    
+                      <td class="">6.00</td>
+                      
+                  </tr>
+                  
+                </tbody>
+              </table>
+            
+
+            
+        
+          </div> 
+          <!-- ---- end tab ---- -->
+
+          <input type="radio" name="tabs" id="tabtwo">
+          <label for="tabtwo"><i class="fas fa-chart-pie"></i> Test Run Details</label>
+          <div class="tab">
+            <div class="stats-grid">
+              
+                <div class="stat-box">
+                  <h4>Checks</h4>
+                  <i class="fas fa-eye icon"></i>
+                  <div class="stat-row">
+                    <span class="stat-label">Passed</span>
+                    <span class="stat-value">6</span>
+                  </div>
+                  <div class="stat-row">
+                    <span class="stat-label">Failed</span>
+                    <span class="stat-value">6</span>
+                  </div>
+                </div>
+              
+
+              
+                <div class="stat-box">
+                  <h4>Iterations</h4>
+                  <i class="fas fa-redo icon"></i>
+                  <div class="stat-row">
+                    <span class="stat-label">Total</span>
+                    <span class="stat-value">1</span>
+                  </div>
+                  <div class="stat-row">
+                    <span class="stat-label">Rate</span>
+                    <span class="stat-value">0.31/s</span>
+                  </div>
+                </div>
+              
+
+              <div class="stat-box">
+                <h4>Virtual Users</h4>
+                <i class="fas fa-user icon"></i>
+                <div class="stat-row">
+                  <span class="stat-label">Min</span>
+                  <span class="stat-value">1</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Max</span>
+                  <span class="stat-value">1</span>
+                </div>
+              </div>
+
+              <div class="stat-box">
+                <h4>Requests</h4>
+                <i class="fas fa-globe icon"></i>
+                <div class="stat-row">
+                  <span class="stat-label">Total</span>
+                  <span class="stat-value">
+                    6
+                    
+                  </span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Rate</span>
+                  <span class="stat-value">
+                    1.89/s
+                    
+                  </span>
+                </div>
+              </div>
+
+              <div class="stat-box">
+                <h4>Data Received</h4>
+                <i class="fas fa-cloud-download-alt icon"></i>
+                <div class="stat-row">
+                  <span class="stat-label">Total</span>
+                  <span class="stat-value">0.01 MB</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Rate</span>
+                  <span class="stat-value">0.00 mB/s</span>
+                </div>
+              </div>
+
+              <div class="stat-box">
+                <h4>Data Sent</h4>
+                <i class="fas fa-cloud-upload-alt icon"></i>
+                <div class="stat-row">
+                  <span class="stat-label">Total</span>
+                  <span class="stat-value">0.00 MB</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">Rate</span>
+                  <span class="stat-value">0.00 mB/s</span>
+                </div>
+              </div>
+            </div>
+          </div>  
+          <!-- ---- end tab ---- -->     
+
+          <input type="radio" name="tabs" id="tabthree">
+          <label for="tabthree"><i class="fas fa-square-check"></i> Checks & Groups</label>
+          <div class="tab">
+            
+
+            
+
+            <h2>Other Checks</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Check Name</th>
+                  <th>Passes</th>
+                  <th>Failures</th>
+                  <th>% Pass</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                  <tr class="checkDetails">
+                    <td width="50%">status is 200</td>
+                    <td class="">0</td>
+                    <td class="failed">6</td>
+                    <td class="failed">0.00</td>
+                  </tr>
+                
+                  <tr class="checkDetails">
+                    <td width="50%">response under 3 sec</td>
+                    <td class="good">6</td>
+                    <td class="">0</td>
+                    <td class="">100.00</td>
+                  </tr>
+                
+              </tbody>
+            </table>     
+          </div> 
+          <!-- ---- end tab ---- -->
+        </div>
+      </div>
+      
+      <footer>K6 Reporter v3.0.4 - Ben Coleman 2025 · <a href="https://github.com/benc-uk/k6-reporter">GitHub</a></footer>
+    </div>
+  </body>
+</html>

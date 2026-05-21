@@ -1,0 +1,17 @@
+==================================================
+EXECUTIVE SUMMARY — quality-module
+==================================================
+Verdict: HEALTHY
+Test duration: 30s
+Total HTTP requests: 42
+HTTP status breakdown:
+  200 OK:              42 (100.0%)
+  401 Unauthorized:    0
+  403 Forbidden:       0
+  404 Not Found:       0
+  429 Too Many Requests: 0 (0.0%)
+Rate limiting:
+  No HTTP 429 (rate limiting) observed in this run.
+Developer actions:
+  1. [low] Capacity: This run did not hit rate limits. Increase VUs or duration to find the breaking point.
+==================================================

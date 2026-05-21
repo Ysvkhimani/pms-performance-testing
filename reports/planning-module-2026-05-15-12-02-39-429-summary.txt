@@ -1,0 +1,45 @@
+
+--- WHERE THE SYSTEM BREAKS (PLAIN TEXT) ---
+Script: planning-module
+
+Planning / agile APIs: backlog, board, and epics for project_id=1. Failures here are usually wrong routes, token expiry, or missing project.
+
+Run mode: multi-VU ramp — use DISCOVER_429=1 for a single cumulative "after N requests" 429 number.
+
+Endpoints:
+  - http://172.16.16.62/promanage1/api/agile/backlog?project_id=1
+  - http://172.16.16.62/promanage1/api/agile/board?project_id=1
+  - http://172.16.16.62/promanage1/api/agile/epics?project_id=1
+
+## Rate limiting (HTTP 429)
+The server returned 159 response(s) with status 429. Multi-VU runs do not produce one global “request number”; check the terminal for lines starting with [K6_429] (includes VU, iteration, and URL). For a single “after N requests” value, rerun with DISCOVER_429=1 .
+
+## HTTP outcomes (this script)
+High failure rate: Most requests are treated as failed (often non-2xx or above threshold). Fix authentication, URLs, and permissions before interpreting this as pure capacity. Class Count What it usually means 2xx 0 Success 3xx 0 Redirects 4xx 429 Client/auth/validation/routing (401/403/404 common) 5xx 0 Server-side errors under load
+
+## Latency (all HTTP requests)
+avg 14 ms , p95 29 ms .
+
+## Functional checks
+Pass rate about 50.0% . Some checks failed — spot-check which assertion broke (status vs duration).
+
+--- RATE LIMIT (429) BLOCK ---
+==================================================
+RATE LIMIT (429) SUMMARY — planning-module
+==================================================
+Total HTTP requests (k6 http_reqs): 432
+429 responses (error_429_count): 159
+First 429 at cumulative request #: NO 429 DETECTED
+Tip: For one clear "after N requests" number from a single client, rerun with DISCOVER_429=1 (see scripts).
+In multi-VU runs, grep stderr for lines starting with [K6_429] for per-VU context.
+==================================================
+
+==================================================
+RATE LIMIT (429) SUMMARY — planning-module
+==================================================
+Total HTTP requests (k6 http_reqs): 432
+429 responses (error_429_count): 159
+First 429 at cumulative request #: NO 429 DETECTED
+Tip: For one clear "after N requests" number from a single client, rerun with DISCOVER_429=1 (see scripts).
+In multi-VU runs, grep stderr for lines starting with [K6_429] for per-VU context.
+==================================================

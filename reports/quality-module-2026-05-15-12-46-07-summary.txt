@@ -1,0 +1,28 @@
+=== PMS LOAD TEST — DEVELOPER SUMMARY ===
+Module: quality-module
+QA: coverage stats and plan stories.
+VERDICT: AUTH_ISSUES
+No HTTP 429 (rate limiting) observed in this run.
+200 OK: 0 (0.0%)
+429:    0 (0.0%)
+401:    22
+403:    0
+ACTIONS:
+1. [high] Authentication — Refresh Bearer token in config/config.js from browser DevTools (Network → 200 request → Authorization header).
+==================================================
+EXECUTIVE SUMMARY — quality-module
+==================================================
+Verdict: AUTH_ISSUES
+Test duration: 18s
+Total HTTP requests: 22
+HTTP status breakdown:
+  200 OK:              0 (0.0%)
+  401 Unauthorized:    22
+  403 Forbidden:       0
+  404 Not Found:       0
+  429 Too Many Requests: 0 (0.0%)
+Rate limiting:
+  No HTTP 429 (rate limiting) observed in this run.
+Developer actions:
+  1. [high] Authentication: Refresh Bearer token in config/config.js from browser DevTools (Network → 200 request → Authorization header).
+==================================================

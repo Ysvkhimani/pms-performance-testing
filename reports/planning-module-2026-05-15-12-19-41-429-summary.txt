@@ -1,0 +1,54 @@
+
+--- WHERE THE SYSTEM BREAKS (PLAIN TEXT) ---
+Script: planning-module
+
+Planning / agile APIs: backlog, board, and epics for project_id=1. Failures here are usually wrong routes, token expiry, or missing project.
+
+Run mode: multi-VU ramp — use DISCOVER_429=1 for a single cumulative "after N requests" 429 number.
+
+Endpoints:
+  - http://172.16.16.62/promanage1/api/agile/backlog?project_id=1
+  - http://172.16.16.62/promanage1/api/agile/board?project_id=1
+  - http://172.16.16.62/promanage1/api/agile/epics?project_id=1
+
+## HTTP status counts (this run)
+Status Count Meaning 200 OK 4 Success 401 Unauthorized 0 Invalid or expired token — update config/config.js 403 Forbidden 2 No permission for this resource 404 Not Found 0 Wrong API path 429 Too Many Requests 0 Rate limited
+
+## Rate limiting (HTTP 429)
+No 429 in this run.
+
+## Overall HTTP health
+Elevated failures: A noticeable share of requests failed checks or HTTP expectations. Review 4xx/5xx counts and individual endpoints. Class Count What it usually means 2xx (all) 4 Success band 3xx 0 Redirects 4xx (all) 2 Client errors 5xx 0 Server errors
+
+## Latency (all HTTP requests)
+avg 93 ms , p95 109 ms .
+
+## Functional checks
+Pass rate about 83.3% . Some checks failed — spot-check which assertion broke (status vs duration).
+
+--- RATE LIMIT (429) BLOCK ---
+==================================================
+HTTP STATUS SUMMARY — planning-module
+==================================================
+Total HTTP requests: 6
+HTTP 200 OK:           4
+HTTP 401 Unauthorized: 0
+HTTP 403 Forbidden:    2
+HTTP 404 Not Found:    0
+HTTP 429 Too Many Requests: 0
+
+First 429 request #: none (no 429 in this run)
+==================================================
+
+==================================================
+HTTP STATUS SUMMARY — planning-module
+==================================================
+Total HTTP requests: 6
+HTTP 200 OK:           4
+HTTP 401 Unauthorized: 0
+HTTP 403 Forbidden:    2
+HTTP 404 Not Found:    0
+HTTP 429 Too Many Requests: 0
+
+First 429 request #: none (no 429 in this run)
+==================================================

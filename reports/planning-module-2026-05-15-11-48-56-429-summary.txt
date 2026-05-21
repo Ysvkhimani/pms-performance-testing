@@ -1,0 +1,10 @@
+==================================================
+RATE LIMIT (429) SUMMARY — planning-module
+==================================================
+Total HTTP requests (k6 http_reqs): 3
+429 responses (error_429_count): 0
+First 429 at cumulative request #: NO 429 DETECTED
+Hint: If most responses are 404/401/403, fix URLs/auth first—bad routes are unlikely to be rate-limited as 429.
+Tip: For one clear "after N requests" number from a single client, rerun with DISCOVER_429=1 (see scripts).
+In multi-VU runs, grep stderr for lines starting with [K6_429] for per-VU context.
+==================================================

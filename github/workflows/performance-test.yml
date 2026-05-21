@@ -1,0 +1,44 @@
+name: PMS Performance Testing Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+  workflow_dispatch:
+
+jobs:
+  k6-performance-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v4
+
+      - name: Install k6
+        run: |
+          sudo gpg -k
+          sudo apt-get update
+          sudo apt-get install -y gnupg software-properties-common
+          curl -fsSL https://dl.k6.io/key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/k6-archive-keyring.gpg
+          echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt-get update
+          sudo apt-get install k6 -y
+
+      - name: Create Reports Folder
+        run: mkdir -p reports
+
+      - name: Run Planning Module Test
+        run: |
+          k6 run scripts/planning-module.js
+
+      - name: Run Quality Module Test
+        run: |
+          k6 run scripts/quality-module.js
+
+      - name: Upload HTML Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-reports
+          path: reports/

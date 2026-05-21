@@ -1,0 +1,28 @@
+=== PMS LOAD TEST — DEVELOPER SUMMARY ===
+Module: planning-module
+Planning / Agile: backlog, board, and epics for project_id=1.
+VERDICT: AUTH_ISSUES
+No HTTP 429 (rate limiting) observed in this run.
+200 OK: 0 (0.0%)
+429:    0 (0.0%)
+401:    3
+403:    0
+ACTIONS:
+1. [high] Authentication — Refresh Bearer token in config/config.js from browser DevTools (Network → 200 request → Authorization header).
+==================================================
+EXECUTIVE SUMMARY — planning-module
+==================================================
+Verdict: AUTH_ISSUES
+Test duration: 2s
+Total HTTP requests: 3
+HTTP status breakdown:
+  200 OK:              0 (0.0%)
+  401 Unauthorized:    3
+  403 Forbidden:       0
+  404 Not Found:       0
+  429 Too Many Requests: 0 (0.0%)
+Rate limiting:
+  No HTTP 429 (rate limiting) observed in this run.
+Developer actions:
+  1. [high] Authentication: Refresh Bearer token in config/config.js from browser DevTools (Network → 200 request → Authorization header).
+==================================================

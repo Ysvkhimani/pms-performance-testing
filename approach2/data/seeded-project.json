@@ -1,0 +1,47 @@
+{
+  "projectId": 181,
+  "name": "ECOFTETHI202602",
+  "code": "-",
+  "seededAt": "2026-05-19T07:24:44.278Z",
+  "profile": "medium",
+  "counts": {
+    "epics": 14,
+    "stories": 332,
+    "tasks": 1500,
+    "errors": 259,
+    "members": 0
+  },
+  "targets": {
+    "epics": 25,
+    "storiesPerEpic": 30,
+    "tasksPerStory": 5,
+    "members": 20
+  },
+  "reads": {
+    "/projects/181/members": {
+      "status": 200,
+      "ms": 38,
+      "kb": 1
+    },
+    "/projects/181/resources": {
+      "status": 200,
+      "ms": 29,
+      "kb": 0
+    },
+    "/agile/backlog?project_id=181": {
+      "status": 200,
+      "ms": 496,
+      "kb": 897
+    },
+    "/agile/board?project_id=181": {
+      "status": 200,
+      "ms": 159,
+      "kb": 6
+    },
+    "/agile/epics?project_id=181": {
+      "status": 200,
+      "ms": 171,
+      "kb": 10
+    }
+  }
+}

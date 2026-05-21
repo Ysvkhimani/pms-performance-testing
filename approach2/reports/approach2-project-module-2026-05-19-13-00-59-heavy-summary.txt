@@ -1,0 +1,39 @@
+=== PMS LOAD TEST — DEVELOPER SUMMARY ===
+Module: approach2-project-module
+Project module on seeded heavy project id=181 (list, resources, members).
+VERDICT: RATE_LIMITED
+Under load, VUs typically hit 429 after ~1–85 requests each.
+Across 6531 total HTTP responses, 5326 were 429 (81.5%). The earliest VUs that were already running hit 429 around local request #1 (median ~1). Note: a VU that joins late can show "request #1" — that is not when the system first broke globally. Test duration about 362s. Before 429 dominated, there were about 1205 responses that were not 429.
+200 OK: 1205 (18.5%)
+429:    5326 (81.5%)
+401:    0
+403:    0
+ACTIONS:
+1. [high] Rate limit / gateway — Review API gateway or WAF rate limits, caching, and backlog/board hot paths. Reproduce with DISCOVER_429=1 for one clear "after N requests" number.
+==================================================
+EXECUTIVE SUMMARY — approach2-project-module
+==================================================
+Verdict: RATE_LIMITED
+Test duration: 362s
+Total HTTP requests: 6531
+HTTP status breakdown:
+  200 OK:              1205 (18.5%)
+  401 Unauthorized:    0
+  403 Forbidden:       0
+  404 Not Found:       0
+  429 Too Many Requests: 5326 (81.5%)
+Rate limiting:
+  Under load, VUs typically hit 429 after ~1–85 requests each.
+  Across 6531 total HTTP responses, 5326 were 429 (81.5%). The earliest VUs that were already running hit 429 around local request #1 (median ~1). Note: a VU that joins late can show "request #1" — that is not when the system first broke globally. Test duration about 362s. Before 429 dominated, there were about 1205 responses that were not 429.
+Developer actions:
+  1. [high] Rate limit / gateway: Review API gateway or WAF rate limits, caching, and backlog/board hot paths. Reproduce with DISCOVER_429=1 for one clear "after N requests" number.
+===================================================== APPROACH 2 — HEAVY PROJECT SUMMARY ===
+Project id: 181
+Project module on seeded heavy project id=181 (list, resources, members).
+VERDICT: DEGRADED
+Seeded project id=181: within SLO under this load.
+≥5s:  0
+≥10s: 0
+SLO fails: 5326
+ACTIONS:
+1. [medium] SLO: See per-endpoint table in report.

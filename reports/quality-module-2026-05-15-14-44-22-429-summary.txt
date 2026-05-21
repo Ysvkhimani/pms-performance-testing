@@ -1,0 +1,28 @@
+=== PMS LOAD TEST — DEVELOPER SUMMARY ===
+Module: quality-module
+QA: coverage stats and plan stories.
+VERDICT: HEALTHY
+No HTTP 429 (rate limiting) observed in this run.
+200 OK: 2 (100.0%)
+429:    0 (0.0%)
+401:    0
+403:    0
+ACTIONS:
+1. [low] Capacity — This run did not hit rate limits. Increase VUs or duration to find the breaking point.
+==================================================
+EXECUTIVE SUMMARY — quality-module
+==================================================
+Verdict: HEALTHY
+Test duration: 2s
+Total HTTP requests: 2
+HTTP status breakdown:
+  200 OK:              2 (100.0%)
+  401 Unauthorized:    0
+  403 Forbidden:       0
+  404 Not Found:       0
+  429 Too Many Requests: 0 (0.0%)
+Rate limiting:
+  No HTTP 429 (rate limiting) observed in this run.
+Developer actions:
+  1. [low] Capacity: This run did not hit rate limits. Increase VUs or duration to find the breaking point.
+==================================================
