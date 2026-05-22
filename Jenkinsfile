@@ -5,7 +5,8 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git 'https://github.com/Ysvkhimani/pms-performance-testing`'
+                git branch: 'main',
+                url: 'https://github.com/Ysvkhimani/pms-performance-testing'
             }
         }
 
@@ -15,7 +16,6 @@ pipeline {
             }
         }
 
-        stage('Run Planning Module Test') {
             steps {
                 sh 'k6 run scripts/planning-module.js'
             }
