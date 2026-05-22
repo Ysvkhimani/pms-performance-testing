@@ -16,6 +16,7 @@ pipeline {
             }
         }
 
+        stage('Run Planning Module Test') {
             steps {
                 sh 'k6 run scripts/planning-module.js'
             }
